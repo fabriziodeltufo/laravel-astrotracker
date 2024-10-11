@@ -44,24 +44,23 @@
             $json_file = file_get_contents($api_url);
 
 
-
             // Decode Json into PHP array
             $response_data = json_decode($json_file);
+            
 
-            // select data only, no headings
+            // records list: select data only, no headings
             $records_data = $response_data->data;
 
             // limit records number for debugging, then comment
-            // $records_data = array_slice($records_data, 0, 3);
-
+            // $records_data = array_slice($records_data, 0, 1);
+            
         ?>
-
 
         <section class="nasa-jpl">
 
             <div class="grid">
-                <div class="col-20 sma-col-"></div>
-                <div class="col-60">
+                <!-- <div class="br col-20 sma-col-"></div> -->
+                <div class="col-80">
 
                     <h4 class="text-5 sma-text-4 pb-2">Real Time Datas Colletion by NASA JPL Api.</h4>
                     <h2 class="text-1 sma-text-3 pb-2">NEO - NEAR EARTH OBJECTS</h2>
@@ -75,6 +74,7 @@
                     <p class="text-4 sma-text-4">In the table, the latest recent objects tracked by the Nasa Jpl.</p>
 
                 </div>
+                <!-- <div class="br col-20 sma-col-"></div> -->
             </div>
 
 
@@ -84,21 +84,47 @@
 
                     <div class="row">
                         <div class="col pt-3 sma-pt-2">
-                            <p class="text-4 sma-text-5">ROW N.</p>
+                            <p class="text-4 sma-text-5">OBJ</p>
                         </div>
 
                         <div class="col pt-3 sma-pt-2">
                             <p class="text-4 sma-text-5">OBJECT NAME</p>
                         </div>
+
                         <div class="col pt-3 sma-pt-2">
-                            <p class="text-4 sma-text-5">ELONG</p>
+                            <p class="text-4 sma-text-5">NEO SCORE</p>
                         </div>
-                        <div class="col pt-3 sma-pt-2">
-                            <p class="text-4 sma-text-5">TEPHEM</p>
-                        </div>
+
                         <div class="col pt-3 sma-pt-2">
                             <p class="text-4 sma-text-5">VMAG ( 0 = Brighter)</p>
                         </div>
+
+                        <div class="col pt-3 sma-pt-2">
+                            <p class="text-4 sma-text-5">ELONG</p>
+                        </div>
+
+                        <div class="col pt-3 sma-pt-2">
+                            <p class="text-4 sma-text-5">TEPHEM</p>
+                        </div>
+
+
+
+                        <div class="col pt-3 sma-pt-2">
+                            <p class="text-4 sma-text-5">ARC</p>
+                        </div>
+
+                        <div class="col pt-3 sma-pt-2">
+                            <p class="text-4 sma-text-5">DEC</p>
+                        </div>
+
+                        <div class="col pt-3 sma-pt-2">
+                            <p class="text-4 sma-text-5">VINF</p>
+                        </div>
+
+                        <div class="col pt-3 sma-pt-2">
+                            <p class="text-4 sma-text-5">RATE</p>
+                        </div>
+
                     </div>
                 </div>
 
@@ -119,6 +145,14 @@
                         </div>
 
                         <div class="col pt-3 sma-pt-2">
+                            <p class="text-4 sma-text-5"><?php echo $record->neoScore;?></p>
+                        </div>
+
+                        <div class="col pt-3 sma-pt-2">
+                            <p class="text-4 sma-text-5"><?php echo $record->Vmag;?></p>
+                        </div>
+
+                        <div class="col pt-3 sma-pt-2">
                             <p class="text-4 sma-text-5"><?php echo $record->elong;?></p>
                         </div>
 
@@ -127,7 +161,19 @@
                         </div>
 
                         <div class="col pt-3 sma-pt-2">
-                            <p class="text-4 sma-text-5"><?php echo $record->Vmag;?></p>
+                            <p class="text-4 sma-text-5"><?php echo $record->arc;?></p>
+                        </div>
+
+                        <div class="col pt-3 sma-pt-2">
+                            <p class="text-4 sma-text-5"><?php echo $record->dec;?></p>
+                        </div>
+
+                        <div class="col pt-3 sma-pt-2">
+                            <p class="text-4 sma-text-5"><?php echo $record->vInf;?></p>
+                        </div>
+
+                        <div class="col pt-3 sma-pt-2">
+                            <p class="text-4 sma-text-5"><?php echo $record->rate;?></p>
                         </div>
 
                     </div>
@@ -135,19 +181,22 @@
                     <?php $rec_count++ ;} ?>
                 </div> <!-- records container -->
 
-                <!-- for debug use  -->
-                <br><br><br>
-                <pre><?php // var_dump($records_data); ?></pre>
-
             </div>
 
         </section>
 
+        <!-- for debug use  -->
+
+        <!-- <br><br><br>
+        <h1>DEBUG</h1>
+        <pre><?php print_r($records_data); ?></pre> -->
+        <!-- <pre><?php var_dump($records_data); ?></pre> -->
+
 
         <section class="bg-lightgrey pt-4 pb-4">
             <div class="grid pt-4 pb-4">
-                <div class="col-20 sma-col-"></div>
-                <div class="col-60">
+                <!-- <div class="col-20 sma-col-"></div> -->
+                <div class="col-80">
 
                     <h2 class="text-1 sma-text-3 pb-2">WHO WORKS TO NASA JPL.</h2>
 
@@ -174,8 +223,8 @@
         <section class="gmaps">
 
             <div class="grid">
-                <div class="col-20 sma-col-"></div>
-                <div class="col-60">
+                <!-- <div class="col-20 sma-col-"></div> -->
+                <div class="col-80">
                     <h4 class="text-5 sma-text-4 pb-2">by Google Maps Api.</h4>
                     <h2 class="text-1 sma-text-3 pb-2">NASA JPL</h2>
                     <p class="text-4 sma-text-4">The NASA JPL (Jet Propulsion Laboratory) is a research and
