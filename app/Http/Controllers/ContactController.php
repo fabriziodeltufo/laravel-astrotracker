@@ -8,11 +8,15 @@ use Mail;
 
 class ContactController extends Controller
 {
+
+    // show contact form
     public function contactForm()
     {
         return view('contactForm');
     }
 
+    
+    // action after submit
     public function storeContactForm(Request $request)
     {
         $request->validate([
@@ -20,7 +24,7 @@ class ContactController extends Controller
             'email' => 'required|email',
             // 'phone' => 'required|digits:10|numeric',
             'subject' => 'required',
-            'message' => 'required',
+            'message' => 'required'
         ]);
 
         $input = $request->all();
@@ -28,17 +32,19 @@ class ContactController extends Controller
         Contact::create($input);
 
         //  Send mail to admin
-        \Mail::send('contactMail', array(
+        Mail::send('contactMail', array(
             'name' => $input['name'],
             'email' => $input['email'],
             // 'phone' => $input['phone'],
             'subject' => $input['subject'],
-            'message' => $input['message'],
+            'bodyMessage' => $input['message']
         ), function($message) use ($request){
-            $message->from($request->email);
-            $message->to('info@okayweb.co.uk', 'Admin')->subject($request->get('subject'));
+
+            $message->from($request->email, 'AstroTracker Contact Form');
+            $message->to('')
+            ->subject($request->get('subject'));
         });
 
-        return redirect()->back()->with(['success' => 'Contact Form Submitted Successfully']);
+        return redirect()->back()->with(['success' => 'Thank You ! Message sent successfully']);
     }
 }

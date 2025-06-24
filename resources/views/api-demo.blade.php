@@ -9,7 +9,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
 
 
-    <!-- BOOTSTRAP SYLE x API GRID -->
+    <!-- BOOTSTRAP STYLE x API GRID -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -23,7 +23,7 @@
 
 
 
-<body">
+<body>
 
 
     <!-- HEADER -->
@@ -36,24 +36,38 @@
 
         <?php
 
-            // collecting json file from api nasa jpl
-            $api_url = 'https://ssd-api.jpl.nasa.gov/scout.api'; 
+            // collecting json file from api nasa jpl endpoint
+            $api_url = 'https://ssd-api.jpl.nasa.gov/scout.api';
 
+            // ------------------  SOLO IN TEST , NON IN PRODUZIONE ------------------------
+        //    SERVE A BYPASSARE CHECK SSL , EVITA ERR 500 SERVER
+
+            $context = stream_context_create([
+                "ssl" => [
+                    "verify_peer" => false,
+                    "verify_peer_name" => false
+                ]
+            ]);
+
+            $json_file = file_get_contents($api_url, false, $context);
+
+            // ------------------  SOLO IN TEST , NON IN PRODUZIONE ------------------------
 
             // Read JSON file
-            $json_file = file_get_contents($api_url);
+            // $json_file = file_get_contents($api_url);
+
 
 
             // Decode Json into PHP array
             $response_data = json_decode($json_file);
-            
+
 
             // records list: select data only, no headings
             $records_data = $response_data->data;
 
             // limit records number for debugging, then comment
             // $records_data = array_slice($records_data, 0, 1);
-            
+
         ?>
 
         <section class="nasa-jpl">
@@ -187,9 +201,9 @@
 
         <!-- for debug use  -->
 
-        <!-- <br><br><br>
-        <h1>DEBUG</h1>
-        <pre><?php print_r($records_data); ?></pre> -->
+        <!-- <br><br><br> -->
+        <!-- <h1>DEBUG</h1> -->
+        <!-- <pre><?php print_r($records_data); ?></pre> -->
         <!-- <pre><?php var_dump($records_data); ?></pre> -->
 
 

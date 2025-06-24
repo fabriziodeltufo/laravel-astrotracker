@@ -34,8 +34,8 @@
                 <div class="card-contact">
                     <div class="card-header">
                         <h2 class="text-1 sma-text-3 text-center mt-4">GET IN TOUCH.</h2>
-                        <p class="text-4 sma-text-4 text-center sma-text-left">Would you like to collaborate with us? <br>Feel free
-                            to contact us anytime.
+                        <p class="text-4 sma-text-4 text-center sma-text-left">Please fill the form to get in contact,
+                            Thanks.
                         </p>
                     </div>
                     <div class="card-body">

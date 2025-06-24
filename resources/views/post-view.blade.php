@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta hHOttp-equiv="X-UA-Compatible" content="ie=edge">
-    <title>AstroTracker</title>
+    <title>AstroTracker - View Post</title>
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
 
 
@@ -32,9 +32,15 @@
     <main>
         <div class="container-blog mb-4 mt-4 pb-4">
 
+            <!-- SINGLE POST -->
             <article class="article">
                 <h4 class="text-5 sma-text-4">{{ $post->created_at }} - <a href="/posts">Blog</a></h4>
-                <h2 class="text-1 sma-text-3">{{ $post->title }}</h2>
+
+                <h2 class="text-1 sma-text-3">
+                    {{ $post->title }}
+                </h2>
+
+
 
                 <p class="text-4 sma-text-4">
                     {{ $post->body }}
@@ -42,7 +48,7 @@
 
             </article>
 
-            <a href="/posts">Go Back</a>
+            <a class="btn btn-info" href="/posts">Go Back</a>
 
         </div>
     </main>
